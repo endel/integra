@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+require 'optparse'
+
+$: << './lib'
+require 'integra'
+
+options = {:command => ARGV.first || :run }
+OptionParser.new do |opts|
+  opts.banner = "Usage: integra [options]"
+
+  opts.on("-l", "--lang", "Specify gherkin language") do |v|
+    options[:lang] = v
+  end
+end.parse!
+
+Integra.command!(options)
