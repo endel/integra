@@ -4,7 +4,12 @@ require 'optparse'
 $: << './lib'
 require 'integra'
 
-options = {:command => ARGV.first || :run }
+config_file = File.expand_path('.integra')
+if File.exists?(config_file)
+  puts open(config_file).read
+end
+
+options = {:command => ARGV.shift || :run }
 OptionParser.new do |opts|
   opts.banner = "Usage: integra [options]"
 

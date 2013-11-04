@@ -5,11 +5,12 @@ require 'logger'
 require 'rspec'
 require 'rspec/expectations'
 
-require File.expand_path('spec/ext/gherkin')
+require 'integra/ext/gherkin'
 
 require "turnip"
 require "turnip/rspec"
 require 'turnip/capybara'
+require "turnip_formatter"
 
 # Load all steps
 Dir.glob("spec/steps/**/*steps.rb") { |f| load f, true }
@@ -49,20 +50,20 @@ Capybara.default_wait_time = 10
 Capybara.ignore_hidden_elements = false
 
 if ENV['DRIVER'] == 'poltergeist'
-    # DEFAULT: headless tests with poltergeist/PhantomJS
-    require 'capybara/poltergeist'
-    Capybara.register_driver :poltergeist do |app|
-        Capybara::Poltergeist::Driver.new(app, {
-            :timeout => 35, # seconds to communicate with phantomjs
-			:phantomjs_logger => JS_STDOUT,
-            :phantomjs_options => [
-                '--load-images=no', '--ignore-ssl-errors=yes', '--local-to-remote-url-access=yes'
-            ],
-            #:debug => true,
-            :window_size => [1280, 1024]
-        })
-    end
-    Capybara.default_driver    = :poltergeist
+  # DEFAULT: headless tests with poltergeist/PhantomJS
+  require 'capybara/poltergeist'
+  Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new(app, {
+      :timeout => 35, # seconds to communicate with phantomjs
+      :phantomjs_logger => JS_STDOUT,
+      :phantomjs_options => [
+        '--load-images=no', '--ignore-ssl-errors=yes', '--local-to-remote-url-access=yes'
+      ],
+      #:debug => true,
+      :window_size => [1280, 1024]
+    })
+  end
+  Capybara.default_driver    = :poltergeist
 end
 
 Capybara.default_driver = ENV['DRIVER'].to_sym
@@ -71,20 +72,19 @@ Capybara.default_driver = ENV['DRIVER'].to_sym
 # RSpec configuration
 #
 RSpec.configure do |c|
-  c.project_name = "Recepedia"
+  c.project_name = Integra.config.project_name
 
   c.before(:type => :feature) do
-	#
-	# Use Firefox as default user-agent
-	#
-	page.driver.add_headers({
-        "User-Agent" => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:25.0) Gecko/20100101 Firefox/25.0"
+    #
+    # Use Firefox as default user-agent
+    #
+    page.driver.add_headers({
+      "User-Agent" => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:25.0) Gecko/20100101 Firefox/25.0"
     })
   end
 
   c.after(:type => :feature) do |group|
-	  #page.save_screenshot("./tmp/screenshots/#{example.description.downcase}-#{ENV['DRIVER']}.png")
+    #page.save_screenshot("./tmp/screenshots/#{example.description.downcase}-#{ENV['DRIVER']}.png")
   end
 
 end
-

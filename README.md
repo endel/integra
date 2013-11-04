@@ -1,21 +1,11 @@
 # Integra
 
-A nice set of defaults for your integration tests, no matter what language your
+A nice set of defaults for integration tests, no matter what language your
 application is written in.
 
-## Installation
+## How to use
 
-Add this line to your application's Gemfile:
-
-    group :test do
-      gem 'integra'
-    end
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
+Install it globally in your system:
 
     $ gem install integra
 

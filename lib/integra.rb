@@ -6,12 +6,13 @@ module Integra
   autoload :Logger,   'integra/logger'
 
   class << self
-    attr_accessor :logger, :lang
+    attr_accessor :logger, :config
   end
 
   def self.command!(options={})
     @logger = Logger.new
-    @lang = options[:lang] || :en
+    @config = Config.new(options)
+
     Commands.send(options[:command], options)
   end
 
