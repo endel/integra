@@ -8,8 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Integra::VERSION
   spec.authors       = ["Endel Dreyer"]
   spec.email         = ["endel.dreyer@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+
+  spec.description   = %q{A nice set of defaults for integration tests, no matter what language your application is written in.}
+  spec.summary       = %q{Integration testing tools.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
