@@ -13,17 +13,15 @@ require 'turnip/capybara'
 require "turnip_formatter"
 
 # Load all steps
-Dir.glob("spec/steps/**/*steps.rb") { |f| load f, true }
+Dir.glob("features/steps/**/*steps.rb") { |f| load f, true }
 
 # Load all support files
-Dir.glob("spec/support/**.rb") { |f| load f, true }
-#end
+Dir.glob("features/support/**.rb") { |f| load f, true }
 
 require 'capybara'
 require 'capybara/rspec'
 require 'capybara/webkit'
 
-ENV['DRIVER'] = ENV['DRIVER'] || 'poltergeist'
 JS_STDOUT = Logger.new('tmp/console.log')
 
 #
@@ -43,13 +41,11 @@ end
 # http://www.without-brains.net/blog/2012/08/01/capybara-and-selenium-with-vagrant/
 #
 
-#Capybara.app_host = "http://br.stage.recepedia.com"
-#Capybara.app_host = "http://br.recepedia.com"
-Capybara.app_host = "http://br.recepedia.dev"
+Capybara.app_host = Integra.config.app_host
 Capybara.default_wait_time = 10
 Capybara.ignore_hidden_elements = false
 
-if ENV['DRIVER'] == 'poltergeist'
+if Integra.config.driver == :poltergeist
   # DEFAULT: headless tests with poltergeist/PhantomJS
   require 'capybara/poltergeist'
   Capybara.register_driver :poltergeist do |app|
@@ -63,10 +59,9 @@ if ENV['DRIVER'] == 'poltergeist'
       :window_size => [1280, 1024]
     })
   end
-  Capybara.default_driver    = :poltergeist
 end
 
-Capybara.default_driver = ENV['DRIVER'].to_sym
+Capybara.default_driver = Integra.config.driver
 
 #
 # RSpec configuration
@@ -84,7 +79,7 @@ RSpec.configure do |c|
   end
 
   c.after(:type => :feature) do |group|
-    #page.save_screenshot("./tmp/screenshots/#{example.description.downcase}-#{ENV['DRIVER']}.png")
+    #page.save_screenshot("./tmp/screenshots/#{example.description.downcase}-#{Integra.config.driver}.png")
   end
 
 end

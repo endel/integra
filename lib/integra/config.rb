@@ -5,7 +5,8 @@ module Integra
     def initialize(options)
       configs = {}
 
-      configs[:lang] = options[:lang] || :en
+      configs[:driver] = (options[:driver] || 'poltergeist').to_sym
+      configs[:lang] = (options[:lang] || 'en').to_sym
       configs[:project_name] = File.basename(File.expand_path('.'))
 
       super(configs)

@@ -6,15 +6,20 @@ require 'integra'
 
 config_file = File.expand_path('.integra')
 if File.exists?(config_file)
-  puts open(config_file).read
+  #puts open(config_file).read
 end
 
-options = {:command => ARGV.shift || :run }
+options = { :command => ARGV.shift || :run }
+
 OptionParser.new do |opts|
   opts.banner = "Usage: integra [options]"
 
-  opts.on("-l", "--lang", "Specify gherkin language") do |v|
+  opts.on("--lang=", "Specify gherkin language") do |v|
     options[:lang] = v
+  end
+
+  opts.on("--driver=", "Specify default capybara driver") do |v|
+    options[:driver] = v
   end
 end.parse!
 

@@ -3,15 +3,36 @@
 A nice set of defaults for integration tests, no matter what language your
 application is written in.
 
-## How to use
+## Requirements
+
+- [ruby >= 1.9.2](http://rvm.io/)
+- [phantomjs](https://github.com/ariya/phantomjs)
+
+## Installation
 
 Install it globally in your system:
 
     $ gem install integra
 
-## Usage
+## How to use
 
-TODO: Write usage instructions here
+Goto your project root and run the initializer:
+
+    $ cd ~/Projects/my-nice-project/
+    $ integra init
+
+For custom [gherkin](https://github.com/cucumber/gherkin) language support, use
+the `--lang=` option:
+
+    $ integra init --lang=pt
+
+## The defaults
+
+- [turnip](https://github.com/jnicklas/turnip/)
+- [turnip_formatter](https://github.com/gongo/turnip_formatter/)
+- [capybara](https://github.com/jnicklas/capybara)
+- [rspec](https://github.com/rspec/rspec)
+- [poltergeist](https://github.com/jonleighton/poltergeist)
 
 ## Contributing
 
