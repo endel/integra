@@ -3,21 +3,16 @@ require "integra/version"
 module Integra
   autoload :Commands, 'integra/commands'
   autoload :Config,   'integra/config'
+  autoload :Logger,   'integra/logger'
+
+  class << self
+    attr_accessor :logger, :lang
+  end
 
   def self.command!(options={})
-    Config.load!
-
-    self.lang=options[:lang] if options[:lang]
-
+    @logger = Logger.new
+    @lang = options[:lang] || :en
     Commands.send(options[:command], options)
-  end
-
-  def self.lang
-    @lang || :en
-  end
-
-  def self.lang=(lang)
-    @lang = lang
   end
 
   # Return a directory with the project libraries.
