@@ -40,7 +40,6 @@ OptionParser.new do |opts|
   end
 
   opts.on("--driver=", "Specify default capybara driver") do |driver|
-    puts "set driver..."
     options[:driver] = driver
   end
 end.parse!
