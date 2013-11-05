@@ -5,6 +5,8 @@ module Integra
   autoload :Config,   'integra/config'
   autoload :Logger,   'integra/logger'
 
+  module Drivers; end
+
   class << self
     attr_accessor :logger, :config
   end
