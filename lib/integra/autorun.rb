@@ -1,17 +1,17 @@
 require 'integra'
+
+#
+# simulate rspec command call for rspec autorun
+#
+$0 = 'rspec'
 require 'rspec/autorun'
-
-require 'logger'
-require 'rspec'
-require 'rspec/expectations'
-
-require 'integra/ext/gherkin'
 
 require "turnip"
 require "turnip/rspec"
 require 'turnip/capybara'
 require "turnip_formatter"
 
+require 'integra/ext/gherkin'
 require 'integra/defaults/placeholders'
 
 # Load all steps
@@ -69,5 +69,4 @@ RSpec.configure do |c|
   c.after(:type => :feature) do |group|
     #page.save_screenshot("./tmp/screenshots/#{example.description.downcase}-#{Integra.config.driver}.png")
   end
-
 end
