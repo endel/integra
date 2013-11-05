@@ -37,7 +37,7 @@ module Integra
 
       support_dest = './features/support/'
       Dir.glob(Integra.gem_libdir + "/template/features/support/*.rb").each do |source|
-        unless File.exists?("#{File.expand_path(support_dest)}#{source}")
+        unless File.exists?(File.expand_path("#{support_dest}#{File.basename(source)}"))
           FileUtils.cp(source, File.expand_path(support_dest))
           Integra.logger.action('create', "#{support_dest}#{File.basename(source)}")
         end
