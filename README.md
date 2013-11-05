@@ -34,6 +34,10 @@ the `--lang=` option:
 
     $ integra init --lang=pt
 
+## + info
+
+- [capybara cheat sheet](https://gist.github.com/zhengjia/428105)
+
 ## Default toolset
 
 - [rspec](https://github.com/rspec/rspec)

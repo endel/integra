@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Endel Dreyer"]
   spec.email         = ["endel.dreyer@gmail.com"]
 
-  spec.description   = %q{A nice set of defaults for integration tests, no matter what language your application is written in.}
-  spec.summary       = %q{Integration testing tools.}
+  spec.description   = %q{A nice set of defaults for webapp integration tests, no matter what language your application is written in.}
+  spec.summary       = %q{Integration testing tools for webapps.}
   spec.homepage      = "https://github.com/endel/integra"
   spec.license       = "MIT"
 

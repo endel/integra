@@ -15,6 +15,14 @@ module Integra
     @logger = Logger.new
     @config = Config.new(options)
 
+    #
+    # When user enters with a path or file as argument, just run it.
+    #
+    unless Commands.respond_to?(options[:command])
+      options[:args] << options[:command]
+      options[:command] = :run
+    end
+
     Commands.send(options[:command], options)
   end
 

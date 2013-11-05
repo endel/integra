@@ -4,6 +4,13 @@ module Integra
 
     def run(options)
       Integra.logger.log("Running: #{Integra.config.app_host}", :green)
+
+      #
+      # simulate rspec command call for rspec autorun
+      #
+      $0 = "rspec"
+      ARGV.concat options[:args]
+
       require 'integra/autorun'
     end
 

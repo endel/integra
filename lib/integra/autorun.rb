@@ -1,9 +1,4 @@
 require 'integra'
-
-#
-# simulate rspec command call for rspec autorun
-#
-$0 = 'rspec'
 require 'rspec/autorun'
 
 require "turnip"
