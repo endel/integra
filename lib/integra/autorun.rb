@@ -12,6 +12,8 @@ require "turnip/rspec"
 require 'turnip/capybara'
 require "turnip_formatter"
 
+require 'integra/defaults/placeholders'
+
 # Load all steps
 Dir.glob("features/steps/**.rb") { |f| load f, true }
 
