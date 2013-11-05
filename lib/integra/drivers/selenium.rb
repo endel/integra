@@ -1,1 +1,1 @@
-require 'selenium'
+require 'selenium-webdriver'

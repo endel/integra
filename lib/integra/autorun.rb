@@ -63,7 +63,7 @@ RSpec.configure do |c|
     #
     page.driver.add_headers({
       "User-Agent" => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:25.0) Gecko/20100101 Firefox/25.0"
-    })
+    }) if page.driver.respond_to?(:add_headers)
   end
 
   c.after(:type => :feature) do |group|
