@@ -5,7 +5,7 @@ require 'integra'
 
 options = {
   :command => (ARGV[0].kind_of?(String) && !ARGV[0].start_with?('-')) ? ARGV.shift : :run,
-  :args => ARGV
+  :args => ARGV.select {|arg| !arg.start_with?('-') }
 }
 
 config_file = File.expand_path('.integra')

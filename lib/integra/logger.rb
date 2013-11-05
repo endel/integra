@@ -10,6 +10,10 @@ module Integra
       end
     end
 
+    def log(action, color=:green)
+      @logger.info("#{action.send(color)}")
+    end
+
     def action(name, description)
       @logger.info("#{name.green}\t#{description}")
     end

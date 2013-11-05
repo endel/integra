@@ -19,7 +19,7 @@ Install it globally in your system:
 Goto your project root and run the initializer:
 
     $ cd ~/Projects/my-nice-project/
-    $ integra init
+    $ integra init localhost
 
 For custom [gherkin](https://github.com/cucumber/gherkin) language support, use
 the `--lang=` option:

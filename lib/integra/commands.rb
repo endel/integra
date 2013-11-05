@@ -1,18 +1,28 @@
 module Integra
   module Commands
+    extend self
 
-    def self.run(options)
+    def run(options)
+      Integra.logger.log("Running: #{Integra.config.app_host}", :green)
       require 'integra/autorun'
     end
 
-    def self.init(options)
+    def init(options)
       require 'fileutils'
+
+      if (app_host = options[:args].first)
+        Integra.config.app_host = self.build_url(app_host)
+      end
 
       # Create '.integra' file.
       ['integra', 'rspec'].each do |file|
         File.open(File.expand_path("./.#{file}"), 'w+') do |f|
           data = open("#{Integra.gem_libdir}/template/#{file}").read
+          #
+          # replace config variables
+          #
           data.gsub!('{lang}', Integra.config.lang.to_s)
+          data.gsub!('{app_host}', Integra.config.app_host.to_s)
           f.write(data)
         end
         Integra.logger.action('create', "./.#{file}")
@@ -30,6 +40,13 @@ module Integra
         FileUtils.cp(source, File.expand_path(support_dest))
         Integra.logger.action('create', "#{support_dest}#{File.basename(source)}")
       end
+    end
+
+    protected
+
+    def build_url(url)
+      url = "http://#{url}" if !url.start_with?('http')
+      url
     end
 
   end
