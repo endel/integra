@@ -3,7 +3,7 @@
 A nice set of defaults for integration tests, no matter what language your
 application is written in.
 
-## Requirements
+## System requirements
 
 - [ruby >= 1.9.2](http://rvm.io/)
 - [phantomjs](https://github.com/ariya/phantomjs)
@@ -21,18 +21,26 @@ Goto your project root and run the initializer:
     $ cd ~/Projects/my-nice-project/
     $ integra init localhost
 
+Running the tests:
+
+    $ integra
+
+Running the tests with a custom driver:
+
+    $ integra --driver=selenium
+
 For custom [gherkin](https://github.com/cucumber/gherkin) language support, use
 the `--lang=` option:
 
     $ integra init --lang=pt
 
-## The defaults
+## Default toolset
 
+- [rspec](https://github.com/rspec/rspec)
+- [capybara](https://github.com/jnicklas/capybara)
+- [poltergeist](https://github.com/jonleighton/poltergeist)
 - [turnip](https://github.com/jnicklas/turnip/)
 - [turnip_formatter](https://github.com/gongo/turnip_formatter/)
-- [capybara](https://github.com/jnicklas/capybara)
-- [rspec](https://github.com/rspec/rspec)
-- [poltergeist](https://github.com/jonleighton/poltergeist)
 
 ## Contributing
 
