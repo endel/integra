@@ -1,11 +1,10 @@
 #!/usr/bin/env ruby
-require 'optparse'
-
 $: << './lib'
+require 'optparse'
 require 'integra'
 
 options = {
-  :command => ARGV.shift || :run,
+  :command => (ARGV[0].kind_of?(String) && !ARGV[0].start_with?('-')) ? ARGV.shift : :run,
   :args => ARGV
 }
 
@@ -14,28 +13,36 @@ if File.exists?(config_file)
   ARGV.concat open(config_file).read.split("\n")
 end
 
-begin
-  OptionParser.new do |opts|
-    opts.banner = "Usage: integra [options]"
+OptionParser.new do |opts|
+  opts.banner = "Usage: integra [options]"
+  opts.separator "Options:"
 
-    opts.on("--project_name=", "Project name") do |v|
-      options[:project_name] = v
-    end
+  opts.on_tail("-v", "--version", "Show version") do |v|
+    puts "#{Integra::NAME} v#{Integra::VERSION}"
+    exit
+  end
 
-    opts.on("--app_host=", "Application host to be tested") do |v|
-      options[:app_host] = v
-    end
+  opts.on_tail("-h", "--help", "Show help") do |v|
+    puts opts
+    exit
+  end
 
-    opts.on("--lang=", "Specify gherkin language") do |v|
-      options[:lang] = v
-    end
+  opts.on("--project_name=", "Project name") do |name|
+    options[:project_name] = name
+  end
 
-    opts.on("--driver=", "Specify default capybara driver") do |v|
-      options[:driver] = v
-    end
-  end.parse!
-rescue
-  #puts "Error parsing..."
-end
+  opts.on("--app_host=", "Application host to be tested") do |host|
+    options[:app_host] = host
+  end
+
+  opts.on("--lang=", "Specify gherkin language") do |lang|
+    options[:lang] = lang
+  end
+
+  opts.on("--driver=", "Specify default capybara driver") do |driver|
+    puts "set driver..."
+    options[:driver] = driver
+  end
+end.parse!
 
 Integra.command!(options)
