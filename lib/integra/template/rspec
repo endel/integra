@@ -1,6 +1,6 @@
 --default_path features
 --color
 --format progress
---format documentation -o tmp/integration.txt
---format RSpecTurnipFormatter -o tmp/integration.html
+--format documentation -o features/reports/integration.txt
+--format RSpecTurnipFormatter -o features/reports/integration.html
 
