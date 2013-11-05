@@ -24,8 +24,6 @@ require 'capybara'
 require 'capybara/rspec'
 require 'capybara/webkit'
 
-JS_STDOUT = Logger.new('tmp/console.log')
-
 #
 # Take screenshots on every step
 #
