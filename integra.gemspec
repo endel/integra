@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.description   = %q{A nice set of defaults for integration tests, no matter what language your application is written in.}
   spec.summary       = %q{Integration testing tools.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/endel/integra"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
