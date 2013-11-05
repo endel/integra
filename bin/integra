@@ -4,23 +4,38 @@ require 'optparse'
 $: << './lib'
 require 'integra'
 
+options = {
+  :command => ARGV.shift || :run,
+  :args => ARGV
+}
+
 config_file = File.expand_path('.integra')
 if File.exists?(config_file)
-  #puts open(config_file).read
+  ARGV.concat open(config_file).read.split("\n")
 end
 
-options = { :command => ARGV.shift || :run }
+begin
+  OptionParser.new do |opts|
+    opts.banner = "Usage: integra [options]"
 
-OptionParser.new do |opts|
-  opts.banner = "Usage: integra [options]"
+    opts.on("--project_name=", "Project name") do |v|
+      options[:project_name] = v
+    end
 
-  opts.on("--lang=", "Specify gherkin language") do |v|
-    options[:lang] = v
-  end
+    opts.on("--app_host=", "Application host to be tested") do |v|
+      options[:app_host] = v
+    end
 
-  opts.on("--driver=", "Specify default capybara driver") do |v|
-    options[:driver] = v
-  end
-end.parse!
+    opts.on("--lang=", "Specify gherkin language") do |v|
+      options[:lang] = v
+    end
+
+    opts.on("--driver=", "Specify default capybara driver") do |v|
+      options[:driver] = v
+    end
+  end.parse!
+rescue
+  #puts "Error parsing..."
+end
 
 Integra.command!(options)

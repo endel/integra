@@ -13,7 +13,7 @@ require 'turnip/capybara'
 require "turnip_formatter"
 
 # Load all steps
-Dir.glob("features/steps/**/*steps.rb") { |f| load f, true }
+Dir.glob("features/steps/**.rb") { |f| load f, true }
 
 # Load all support files
 Dir.glob("features/support/**.rb") { |f| load f, true }

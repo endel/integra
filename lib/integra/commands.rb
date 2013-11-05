@@ -9,10 +9,13 @@ module Integra
       require 'fileutils'
 
       # Create '.integra' file.
-      File.open(File.expand_path('./.integra'), 'w+') do |f|
-        data = open("#{Integra.gem_libdir}/template/integra_init").read
-        data.gsub!('{lang}', Integra.config.lang.to_s)
-        f.write(data)
+      ['integra', 'rspec'].each do |file|
+        File.open(File.expand_path("./.#{file}"), 'w+') do |f|
+          data = open("#{Integra.gem_libdir}/template/#{file}").read
+          data.gsub!('{lang}', Integra.config.lang.to_s)
+          f.write(data)
+        end
+        Integra.logger.action('create', "./.#{file}")
       end
 
       # Create 'features' and 'support' directories
