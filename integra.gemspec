@@ -19,13 +19,15 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency 'rspec', '>= 2.14.1'
-  spec.add_dependency 'poltergeist', '>= 1.4.1'
-  spec.add_dependency 'capybara', '>= 2.1.0'
-  spec.add_dependency 'turnip', '>= 1.1.0'
-  spec.add_dependency 'turnip_formatter', '>= 0.2.7'
-  spec.add_dependency 'gnawrnip', '>= 0.1.3'
-  spec.add_dependency 'colorize', '>= 0.6.0'
+  spec.add_dependency 'rspec', '~> 2.14.1'
+  spec.add_dependency 'poltergeist', '~> 1.4.1'
+  spec.add_dependency 'capybara', '~> 2.1.0'
+  spec.add_dependency 'selenium-webdriver', '~> 2.42.0'
+  # spec.add_dependency 'capybara-webkit', '~> 1.1.1'
+  spec.add_dependency 'turnip', '~> 1.1.0'
+  spec.add_dependency 'turnip_formatter', '~> 0.2.7'
+  spec.add_dependency 'gnawrnip', '~> 0.1.3'
+  spec.add_dependency 'colorize', '~> 0.6.0'
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
